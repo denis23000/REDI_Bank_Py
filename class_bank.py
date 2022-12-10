@@ -1,13 +1,14 @@
 from class_customer import Customer
 from class_bank_account import BankAccount
 
-# in class bank heppens all actions
+# in class bank happen all actions
 
 class Bank:
     def __init__(self, name):
         self.name = name
         self.customers = []                   # in the list customers saved all user, objects from class Customers
         self.pin_admin = "1111"               # password for admin
+        self.bankaccounts = []
 
     def start(self):                           # the programm starts hier, from start.
         first_choise = "3"                     # a user can choose to work as a customer or as an admin
@@ -50,12 +51,12 @@ class Bank:
             break
         username = username_input
         password = input("Create your password ")
-        new_customer = Customer(name=name, address=address,     # creating new useraccount
+        new_customer = Customer(name=name, address=address,     # creating new useraccount(new customer)
                                 phone_number=phone_number,      # with constructor from class Customer
                                 username=username,
                                 password=password)
         self.customers.append(new_customer)                    # saving new useraccount in the customers list
-        print("Account created")
+        print("Customer created")
         self.work_as_customer()                  # switching to the working area "work as customer"
 
     def check_pin(self):
@@ -81,29 +82,31 @@ class Bank:
             customer_in_choise = input(
                 "1.Create new bankaccount, 2.Show bankaccounts, 3.Withdrow, 4.Deposit, 5.Previous menu, 6.Exit")
             if customer_in_choise == "1":
-                self.new_account()
+                self.new_bankaccount()
             elif customer_in_choise == "2":
-                customer.show_bankaccounts()
+                for i in self.bankaccounts:
+                    if i == customer:
+                        print("account  {}  balance {}".format(i.account_nr, i.balance))
             elif customer_in_choise == "3":
                 amount = input("Enter an amount ")
-                if len(self.accounts) > 1:
+                if len(self.bankaccounts) > 1:
                     wich_account = input("Enter account nummer")
-                    for i in self.accounts:
+                    for i in self.bankaccounts:
                         if i.account_nr == wich_account:
                             this_account = i
                             this_account.withdrow(amount)
                 else:
-                    self.accounts[0].withdrow(amount)
+                    self.bankaccounts[0].withdrow(amount)
             elif customer_in_choise == "4":
                 amount = input("Enter an amount ")
-                if len(self.accounts) > 1:
+                if len(self.bankaccounts) > 1:
                     wich_account = input("Enter account nummer")
-                    for i in self.accounts:
+                    for i in self.bankaccounts:
                         if i.account_nr == wich_account:
                             this_account = i
                             this_account.deposit(amount)
                 else:
-                    self.accounts[0].deposit(amount)
+                    self.bankaccounts[0].deposit(amount)
             elif customer_in_choise == "5":
                 self.work_as_customer()
             elif customer_in_choise == "6":
@@ -183,7 +186,18 @@ class Bank:
                 for i in self.customers:
                     print(i)
 
-
+    def new_bankaccount(self):
+        username = input("Enter your name ")
+        acc_nr = 1
+        for i in self.bankaccounts:
+            if i.account_nr > acc_nr:
+                acc_nr = i.account_nr
+                acc_nr += 1
+        balance = int(input("Enter your start balance "))
+        new_account = BankAccount(username=username, account_nr=acc_nr, balance=balance)
+        self.bankaccounts.append(new_account)
+        print("Your new account successfully created.")
+        self.work_as_customer()
 
 
 

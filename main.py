@@ -19,12 +19,12 @@ account_bob_1 = BankAccount(username="bob", account_nr=1, balance=1000)
 account_bob_2 = BankAccount(username="bob", account_nr=2, balance=2000)
 account_bob_3 = BankAccount(username="bob", account_nr=3, balance=3000)
 
-customer_iggy.accounts.append(account_iggy_1)
-customer_iggy.accounts.append(account_iggy_2)
-customer_iggy.accounts.append(account_iggy_3)
+redi_bank.bankaccounts.append(account_iggy_1)
+redi_bank.bankaccounts.append(account_iggy_2)
+redi_bank.bankaccounts.append(account_iggy_3)
 
-customer_iggy.accounts.append(account_bob_1)
-customer_iggy.accounts.append(account_bob_2)
-customer_iggy.accounts.append(account_bob_3)
+redi_bank.bankaccounts.append(account_bob_1)
+redi_bank.bankaccounts.append(account_bob_2)
+redi_bank.bankaccounts.append(account_bob_3)
 
 redi_bank.start()
