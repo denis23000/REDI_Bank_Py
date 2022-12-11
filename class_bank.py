@@ -29,12 +29,15 @@ class Bank:
             customer_choise = input("1. Login, 2. Signup, 3. Previous menu, 4. exit")
             if customer_choise == "4":
                 print("Goodbye and have a nece day!")
-            if customer_choise == "3":
+            elif customer_choise == "3":
                 self.start()
-            if customer_choise == "2":
+            elif customer_choise == "2":
                 self.new_customer()
-            if customer_choise == "1":
+            elif customer_choise == "1":
                 self.check_pin()
+            else:
+                print("invalid input, try again")
+                self.work_as_customer()
 
     def new_customer(self):                         # creating a new useraccount
         name = input("Enter your name ")
@@ -45,7 +48,7 @@ class Bank:
             username_input = input("Create your username: ")                    # username must be unique
             for i in self.customers:
                 if i.username == username_input:                         # checking if username already not exist
-                    print("This name already exist. Ty again ")
+                    print("This name already exist. Try again ")
                 else:
                     x += 1
             break
@@ -60,7 +63,7 @@ class Bank:
         self.work_as_customer()                  # switching to the working area "work as customer"
 
     def check_pin(self):
-        trying = 3
+        trying = 3                          # if 3 more time username or password is wrong, the end of programm
         while trying != 0:
             username_input = input('Enter your username')
             password_input = input('Enter your password')
@@ -70,9 +73,9 @@ class Bank:
                     self.work_as_customer_in(customer=work_customer)
                 else:
                     trying = trying - 1
-                    print('invalid pin or account number! You have {} tries left. '.format(trying))
                     if trying == 0:
-                        print("Sorry, You can not try again :(")
+                        pass
+
 
 
     def work_as_customer_in(self, customer: Customer):
