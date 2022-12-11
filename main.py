@@ -5,7 +5,7 @@ from class_customer import Customer
 redi_bank = Bank("REDI_bank")
 
 customer_iggy = Customer(name="Iggy Pop", address="Munich", phone_number="+49-025-45", username="iggy", password="123")
-customer_bob = Customer(name="Bob Marley", address="Jamaica", phone_number="+39-01-88", username="bob", password="123")
+customer_bob = Customer(name="Bob Marley", address="Jamaica", phone_number="+39-01-88", username="bob", password="222")
 
 redi_bank.customers.append(customer_iggy)
 
