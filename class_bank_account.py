@@ -1,7 +1,7 @@
 class BankAccount:
     def __init__(self, username, account_nr, balance):
-        self.username = username
-        self.account_nr = account_nr
+        self.username = username                              # username of owner (unique)
+        self.account_nr = account_nr                      # account number is unique
         self.balance = balance
 
     def deposit(self, amount):
