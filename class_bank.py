@@ -70,7 +70,6 @@ class Bank:
                  if password_input in i.password:
                     work_customer = i
                     self.work_as_customer_in(customer=work_customer)
-
         print("Invalid username or password, try again")
         self.check_pin()
 
@@ -79,39 +78,42 @@ class Bank:
 
     def work_as_customer_in(self, customer: Customer):
         print("Welcome " + customer.name)
-        customer_in_choise = "6"
-        while customer_in_choise == "5" or customer_in_choise == "6":
-            customer_in_choise = input(
-                "1.Create new bankaccount, 2.Show bankaccounts, 3.Withdrow, 4.Deposit, 5.Previous menu, 6.Exit")
-            if customer_in_choise == "1":
-                self.new_bankaccount()
-            elif customer_in_choise == "2":
+        customer_in_choise = input(
+            "1.Create new bankaccount, 2.Show bankaccounts, 3.Withdrow, 4.Deposit, 5.Previous menu, 6.Exit")
+        if customer_in_choise == "1":
+            self.new_bankaccount()
+        elif customer_in_choise == "2":
+            for i in self.bankaccounts:
+                print(i)
+                self.work_as_customer_in(customer)
+        elif customer_in_choise == "3":
+            amount = input("Enter an amount ")
+            if len(self.bankaccounts) > 1:
+                wich_account = input("Enter account nummer")
                 for i in self.bankaccounts:
-                    print(i)
-            elif customer_in_choise == "3":
-                amount = input("Enter an amount ")
-                if len(self.bankaccounts) > 1:
-                    wich_account = input("Enter account nummer")
-                    for i in self.bankaccounts:
-                        if i.account_nr == wich_account:
-                            this_account = i
-                            this_account.withdrow(amount)
-                else:
-                    self.bankaccounts[0].withdrow(amount)
-            elif customer_in_choise == "4":
-                amount = input("Enter an amount ")
-                if len(self.bankaccounts) > 1:
-                    wich_account = input("Enter account nummer")
-                    for i in self.bankaccounts:
-                        if i.account_nr == wich_account:
-                            this_account = i
-                            this_account.deposit(amount)
-                else:
-                    self.bankaccounts[0].deposit(amount)
-            elif customer_in_choise == "5":
-                self.work_as_customer()
-            elif customer_in_choise == "6":
-                print("Goodbye and have a nece day!")
+                    if i.account_nr == wich_account:
+                        this_account = i
+                        this_account.withdrow(amount)
+                        self.work_as_customer_in(customer)
+            else:
+                self.bankaccounts[0].withdrow(amount)
+                self.work_as_customer_in(customer)
+        elif customer_in_choise == "4":
+            amount = input("Enter an amount ")
+            if len(self.bankaccounts) > 1:
+                wich_account = input("Enter account nummer")
+                for i in self.bankaccounts:
+                    if i.account_nr == wich_account:
+                        this_account = i
+                        this_account.deposit(amount)
+                        self.work_as_customer_in(customer)
+            else:
+                self.bankaccounts[0].deposit(amount)
+                self.work_as_customer_in(customer)
+        elif customer_in_choise == "5":
+            self.work_as_customer_in(customer)
+        elif customer_in_choise == "6":
+            print("Goodbye and have a nece day!")
 
 
     def work_as_admin(self):
