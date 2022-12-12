@@ -4,7 +4,7 @@ class BankAccount:
         self.account_nr = account_nr                      # account number is unique
         self.balance = balance
 
-    def deposit(self, amount):
+    def deposit(self, amount):                               # deposit money
         if not isinstance(amount, int):
             raise ValueError('Only numbers are allowed')
         if amount < 0:
@@ -12,7 +12,7 @@ class BankAccount:
         self.balance += amount
         print(self)
 
-    def withdraw(self, amount):
+    def withdraw(self, amount):                        # withdraw money
         if not isinstance(amount, int):
             raise ValueError('Only numbers are allowed')
         if amount < 0:
@@ -22,9 +22,10 @@ class BankAccount:
         self.balance -= amount
         print(self)
 
+# function to show accounts
+
     def __str__(self):
        return f"{self.username}, account: {self.account_nr}, balance: {self.balance} € "
 
-    def check_balance(self):
-        print(self)
+
 
