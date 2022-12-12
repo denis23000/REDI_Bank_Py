@@ -84,8 +84,9 @@ class Bank:
             self.new_bankaccount()
         elif customer_in_choise == "2":
             for i in self.bankaccounts:
-                print(i)
-                self.work_as_customer_in(customer)
+                if i.username == customer.username:
+                    print(i)
+            self.work_as_customer_in(customer)
         elif customer_in_choise == "3":
             amount = input("Enter an amount ")
             if len(self.bankaccounts) > 1:
@@ -185,12 +186,12 @@ class Bank:
                             i.address = new_address
                             print("Done. New address saved. ")
                             self.work_as_admin_in()
-            elif admin_choise == "2":
+            elif admin_choise == "1":
                 for i in self.customers:
                     print(i)
 
     def new_bankaccount(self):
-        username = input("Enter your name ")
+        username = input("Enter your username ")
         acc_nr = 1
         for i in self.bankaccounts:
             if i.account_nr > acc_nr:
@@ -201,6 +202,8 @@ class Bank:
         self.bankaccounts.append(new_account)
         print("Your new account successfully created.")
         self.work_as_customer()
+
+
 
 
 
