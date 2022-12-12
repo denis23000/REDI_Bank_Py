@@ -63,18 +63,17 @@ class Bank:
         self.work_as_customer()                  # switching to the working area "work as customer"
 
     def check_pin(self):
-        trying = 3                          # if 3 more time username or password is wrong, the end of programm
-        while trying != 0:
-            username_input = input('Enter your username')
-            password_input = input('Enter your password')
-            for i in self.customers:
-                if username_input == i.username and password_input == i.password:
+        username_input = input('Enter your username')
+        password_input = input('Enter your password')
+        for i in self.customers:
+            if username_input in i.username:
+                 if password_input in i.password:
                     work_customer = i
                     self.work_as_customer_in(customer=work_customer)
-                else:
-                    trying = trying - 1
-                    if trying == 0:
-                        pass
+
+        print("Invalid username or password, try again")
+        self.check_pin()
+
 
 
 
@@ -88,8 +87,7 @@ class Bank:
                 self.new_bankaccount()
             elif customer_in_choise == "2":
                 for i in self.bankaccounts:
-                    if i == customer:
-                        print("account  {}  balance {}".format(i.account_nr, i.balance))
+                    print(i)
             elif customer_in_choise == "3":
                 amount = input("Enter an amount ")
                 if len(self.bankaccounts) > 1:
