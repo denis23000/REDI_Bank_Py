@@ -14,6 +14,8 @@ class Customer:
     def set_phone_number(self, new_phone_number):
         self.phone_number = new_phone_number
 
+# function for show customers information
+
     def __str__(self):
        return f"{self.name}, address: {self.address}, phone number: {self.phone_number}"
 
